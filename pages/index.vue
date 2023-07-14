@@ -8,9 +8,15 @@
 </template>
 
 <script setup>
+import { useCartStore } from '~/stores/cart';
 useHead({
   titleTemplate: "Bouncer - Home",
 });
+
+let cart = useCartStore();
+if(process.client) {
+  cart.getItemsToCart()
+}
 </script>
 
 <style>

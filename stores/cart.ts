@@ -9,17 +9,29 @@ export const useCartStore = defineStore("cart", () => {
   });
 
   function addToCart(prod) {
-    let index = cartItems.value.findIndex((product) => product.id === prod.id);
-    if (index !== -1) {
-      prod += 1;
-      console.log(cartItems);
-    } else {
-      prod.quantity = 1;
-      cartItems.value.push(prod);
-      console.log(cartItems);
+    let loacalItems = JSON.parse(localStorage.getItem("shoppingCart"))
+    // If there is no items in localStorage 
+    if(!loacalItems) {
+      localStorage.setItem("shoppingCart", prod)
     }
+    else {
+      let index = cartItems.value.findIndex((product) => product.id === prod.id);
+      if (index !== -1) {
+        prod += 1;
+      } else {
+        prod.quantity = 1;
+        cartItems.value.push(prod);
+        localStorage.setItem("shoppingCart", JSON.stringify(cartItems))
+        console.log(cartItems);
+      }
+    }
+    
   }
-
+  function getItemsToCart() {
+    let items = JSON.parse(localStorage.getItem("shoppingCart"));
+    if(items){cartItems.value =  items}
+    
+  }
   function incrementQ(prod) {
     let index = cartItems.value.findIndex((product) => product.id === prod.id);
     if (index !== -1) {
@@ -54,5 +66,6 @@ export const useCartStore = defineStore("cart", () => {
     incrementQ,
     decrementQ,
     removeFromCart,
+    getItemsToCart
   };
 });

@@ -114,12 +114,15 @@ useHead({
 watch(() => {
   if (process.client) {
     /// Updates the item in local storage
+    if(cart.getCartItems.length == 0) {return;}
     localStorage.setItem("shoppingCart", JSON.stringify(cart.getCartItems));
   }
 });
 
-onBeforeMount(() => {
+onMounted(() => {
+  cart.getItemsToCart()
   cartItems.value = JSON.parse(localStorage.getItem("shoppingCart"));
+  console.log(cartItems)
 });
 </script>
 
