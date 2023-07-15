@@ -21,14 +21,13 @@ export const useCartStore = defineStore("cart", () => {
       } else {
         prod.quantity = 1;
         cartItems.value.push(prod);
-        localStorage["shoppingCart"] =  JSON.stringify(cartItems);
-        console.log(cartItems);
+        localStorage["shoppingCart"] =  JSON.stringify(cartItems.value);
       }
     }
     
   }
   function getItemsToCart() {
-    console.log(localStorage.getItem("shoppingCart"))
+    
     let items = JSON.parse(localStorage.getItem("shoppingCart"));
     if(items){cartItems.value =  items}
   }

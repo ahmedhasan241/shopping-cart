@@ -122,7 +122,6 @@ watch(() => {
 onMounted(() => {
   cart.getItemsToCart()
   cartItems.value = JSON.parse(localStorage.getItem("shoppingCart"));
-  console.log(cartItems)
 });
 </script>
 
