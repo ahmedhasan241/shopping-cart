@@ -21,7 +21,7 @@ export const useCartStore = defineStore("cart", () => {
       } else {
         prod.quantity = 1;
         cartItems.value.push(prod);
-        localStorage["shoppingCart"] =  JSON.stringify(cartItems.value);
+        localStorage["shoppingCart"] =  JSON.stringify(cartItems);
       }
     }
     
