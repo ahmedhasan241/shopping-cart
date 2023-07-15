@@ -12,6 +12,7 @@ export const useCartStore = defineStore("cart", () => {
     let loacalItems = JSON.parse(localStorage.getItem("shoppingCart"))
     // If there is no items in localStorage 
     if(!loacalItems) {
+      prod.quantity = 1;
       cartItems.value.push(prod);
       localStorage.setItem("shoppingCart", JSON.stringify(cartItems))
     }
@@ -20,13 +21,12 @@ export const useCartStore = defineStore("cart", () => {
       if (index !== -1) {
         prod += 1;
       } else {
-        console.log(typeof(prod))
+        
         prod.quantity = 1;
         cartItems.value.push(prod);
         localStorage.setItem("shoppingCart",JSON.stringify(cartItems));
       }
     }
-    
   }
   function getItemsToCart() {
     let items = JSON.parse(localStorage.getItem("shoppingCart"));
