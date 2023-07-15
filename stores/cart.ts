@@ -12,7 +12,7 @@ export const useCartStore = defineStore("cart", () => {
     let loacalItems = JSON.parse(localStorage.getItem("shoppingCart"))
     // If there is no items in localStorage 
     if(!loacalItems) {
-      localStorage.setItem("shoppingCart", prod)
+      localStorage.setItem("shoppingCart", JSON.stringify(prod))
     }
     else {
       let index = cartItems.value.findIndex((product) => product.id === prod.id);
@@ -21,16 +21,16 @@ export const useCartStore = defineStore("cart", () => {
       } else {
         prod.quantity = 1;
         cartItems.value.push(prod);
-        localStorage.setItem("shoppingCart", JSON.stringify(cartItems))
+        localStorage["shoppingCart"] =  JSON.stringify(cartItems);
         console.log(cartItems);
       }
     }
     
   }
   function getItemsToCart() {
+    console.log(localStorage.getItem("shoppingCart"))
     let items = JSON.parse(localStorage.getItem("shoppingCart"));
     if(items){cartItems.value =  items}
-    
   }
   function incrementQ(prod) {
     let index = cartItems.value.findIndex((product) => product.id === prod.id);
