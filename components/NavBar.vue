@@ -57,7 +57,7 @@
               <p>{{ cart.countCartItems }} {{ $t("cart_title") }}</p>
               <p class="text-body-tertiary mx-2">
                 {{
-                  cart.cartItems
+                  cart.cartItems.value
                     .reduce(
                       (acc, item) => (acc += item.price * item.quantity),
                       0

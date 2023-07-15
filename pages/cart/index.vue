@@ -68,7 +68,7 @@
           >{{ $t("cart_subtotal") }}
           <h5 class="text-danger">
             ${{
-              (cart.cartItems || [])
+              cart.cartItems.value
                 .reduce((acc, item) => (acc += item.price * item.quantity), 0)
                 .toFixed(2)
             }}
@@ -87,7 +87,7 @@
         {{ $t("cart_total") }}
         <span>
           ${{
-            (cart.cartItems || [])
+            cart.cartItems.value
               .reduce(
                 (acc, item) => (acc += item.price * item.quantity + 20),
                 0

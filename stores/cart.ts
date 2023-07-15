@@ -27,7 +27,8 @@ export const useCartStore = defineStore("cart", () => {
     
   }
   function getItemsToCart() {
-    
+    console.log("Items")
+    console.log(cartItems)
     let items = JSON.parse(localStorage.getItem("shoppingCart"));
     if(items){cartItems.value =  items}
   }
