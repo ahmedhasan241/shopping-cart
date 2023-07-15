@@ -108,7 +108,6 @@ const availableLocales = computed(() => {
 const localePath = useLocalePath();
 
 const cart = useCartStore();
-if(process.client){cart.getItemsToCart();}
 </script>
 
 <style scoped>
