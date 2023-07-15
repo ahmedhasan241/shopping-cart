@@ -12,16 +12,18 @@ export const useCartStore = defineStore("cart", () => {
     let loacalItems = JSON.parse(localStorage.getItem("shoppingCart"))
     // If there is no items in localStorage 
     if(!loacalItems) {
-      localStorage.setItem("shoppingCart", JSON.stringify(prod))
+      cartItems.value.push(prod);
+      localStorage.setItem("shoppingCart", JSON.stringify(cartItems))
     }
     else {
       let index = cartItems.value.findIndex((product) => product.id === prod.id);
       if (index !== -1) {
         prod += 1;
       } else {
+        console.log(typeof(prod))
         prod.quantity = 1;
         cartItems.value.push(prod);
-        localStorage["shoppingCart"] =  JSON.stringify(cartItems);
+        localStorage.setItem("shoppingCart",JSON.stringify(cartItems));
       }
     }
     
